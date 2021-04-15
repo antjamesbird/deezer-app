@@ -1,4 +1,4 @@
-import List from '../List/List';
+import TrackList from '../TrackList/TrackList';
 
 function Detail() {
   const dummyData = {
@@ -578,7 +578,7 @@ function Detail() {
           <span>Released</span>
         </li>
         {dummyData.tracks.data.map((track) => (
-          <List key={track.id} release={dummyData.release_date} {...track} />
+          <TrackList key={track.id} release={dummyData.release_date} {...track} />
         ))}
       </ul>
     </div>
