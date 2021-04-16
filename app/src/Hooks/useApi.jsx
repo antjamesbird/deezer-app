@@ -6,7 +6,7 @@ export const useApi = (url) => {
   const initialState = {
     status: "",
     error: null,
-    data: [],
+    data: null,
   };
 
   const [state, dispatch] = useReducer((state, action) => {
@@ -14,6 +14,7 @@ export const useApi = (url) => {
       case "SEARCHING":
         return { ...initialState, status: "searching" };
       case "SEARCH_COMPLETE":
+          console.log('action', action);
         return { ...initialState, status: "complete", data: action.payload };
       case "SEARCH_ERROR":
         return { ...initialState, status: "error", error: action.payload };
@@ -23,22 +24,25 @@ export const useApi = (url) => {
   }, initialState);
 
   useEffect(() => {
-    console.log("gets here");
     let cancelRequest = false;
     if (!url) return;
 
     const fetchData = async () => {
       dispatch({ type: "SEARCHING" });
       if (cache.current[url]) {
-        const data = cache.current[url];
-        dispatch({ type: "SEARCHING", payload: data });
+          console.log('in cache', cache.current[url]);
+        const data = cache.current[url].data;
+        console.log('cache', cache);
+        console.log('data', data);
+        dispatch({ type: "SEARCH_COMPLETE", payload: data });
       } else {
         try {
+            console.log('make call');
           const response = await fetch(url);
           const data = await response.json();
           cache.current[url] = data;
           if (cancelRequest) return;
-          dispatch({ type: "SEARCH_COMPLETE", payload: data });
+          dispatch({ type: "SEARCH_COMPLETE", payload: data.data });
         } catch (error) {
           if (cancelRequest) return;
           dispatch({ type: "SEARCH_ERROR", payload: error.message });

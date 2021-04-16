@@ -1,3 +1,8 @@
 export const initialState = {
-  searchResults: ['kjafkjsdh'],
+  searchResults: [],
+  autocomplete: [],
+  searchstatus: '',
+  setAlbums: false,
+  artistAlbums: [],
+  trackList: []
 };
