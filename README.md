@@ -15,9 +15,3 @@
 <p>Run `npm run dev` from the root directory and the app should start up on `http://localhost:3000/`</p>
 
 ### `npm run dev`
-
-<h3>::Tests::</h3>
-
-<p>Run `npm run test` from the app directory to run tests</p>
-
-## `npm run test`
