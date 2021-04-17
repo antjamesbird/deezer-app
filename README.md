@@ -18,6 +18,6 @@
 
 <h3>::Tests::</h3>
 
-<p>Run `npm run dev` from the app directory to run tests</p>
+<p>Run `npm run test` from the app directory to run tests</p>
 
 ## `npm run test`
