@@ -24,7 +24,9 @@ function AppContainer() {
         <Search />
         {!!searchstatus && (
           <div className="search-status">
-            <p>{searchstatus}</p>
+            <p>
+              <strong>{searchstatus}</strong>
+            </p>
           </div>
         )}
 

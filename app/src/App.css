@@ -2,13 +2,24 @@
   --background: #171219;
   --input: #14213d;
   --text: #f2f4f3;
-  --detail: #14213d;
+  --detail: rgb(255, 255, 255);
+  --footer: #011e18;
 }
 
 body,
 html {
   padding: 0;
   margin: 0;
-  background-color: var(--background);
+  background: #00bf8f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #001510,
+    #00bf8f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #001510,
+    #00bf8f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: var(--text);
 }
