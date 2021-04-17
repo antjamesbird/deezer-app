@@ -1,8 +1,9 @@
-import { Provider } from "./Context/AppContext";
-import { initialState } from "./State/state";
-import reducer from "./Reducers/AppReducer";
-import "./App.css";
-import AppContainer from "./Components/AppContainer/AppContainer";
+import React from 'react';
+import { Provider } from './Context/AppContext';
+import initialState from './State/state';
+import reducer from './Reducers/AppReducer';
+import './App.css';
+import AppContainer from './Components/AppContainer/AppContainer';
 
 function App() {
   return (

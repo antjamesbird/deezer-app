@@ -1,8 +1,10 @@
-export const initialState = {
+const initialState = {
   searchResults: [],
   autocomplete: [],
   searchstatus: '',
   setAlbums: false,
   artistAlbums: [],
-  trackList: []
+  trackList: [],
 };
+
+export default initialState;

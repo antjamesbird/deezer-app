@@ -1,25 +1,24 @@
-import { useEffect, useRef, useReducer } from "react";
+import { useEffect, useRef, useReducer } from 'react';
 
-export const useApi = (url) => {
+const useApi = (url) => {
   const cache = useRef({});
 
   const initialState = {
-    status: "",
+    status: '',
     error: null,
     data: null,
   };
 
-  const [state, dispatch] = useReducer((state, action) => {
+  const [state, dispatch] = useReducer((reducerstate, action) => {
     switch (action.type) {
-      case "SEARCHING":
-        return { ...initialState, status: "searching" };
-      case "SEARCH_COMPLETE":
-          console.log('action', action);
-        return { ...initialState, status: "complete", data: action.payload };
-      case "SEARCH_ERROR":
-        return { ...initialState, status: "error", error: action.payload };
+      case 'SEARCHING':
+        return { ...initialState, status: 'searching' };
+      case 'SEARCH_COMPLETE':
+        return { ...initialState, status: 'complete', data: action.payload };
+      case 'SEARCH_ERROR':
+        return { ...initialState, status: 'error', error: action.payload };
       default:
-        return state;
+        return reducerstate;
     }
   }, initialState);
 
@@ -28,34 +27,33 @@ export const useApi = (url) => {
     if (!url) return;
 
     const fetchData = async () => {
-      dispatch({ type: "SEARCHING" });
+      dispatch({ type: 'SEARCHING' });
       if (cache.current[url]) {
-          console.log('in cache', cache.current[url]);
-        const data = cache.current[url].data;
-        console.log('cache', cache);
-        console.log('data', data);
-        dispatch({ type: "SEARCH_COMPLETE", payload: data });
+        const { data } = cache.current[url];
+        dispatch({ type: 'SEARCH_COMPLETE', payload: data });
       } else {
         try {
-            console.log('make call');
           const response = await fetch(url);
           const data = await response.json();
           cache.current[url] = data;
           if (cancelRequest) return;
-          dispatch({ type: "SEARCH_COMPLETE", payload: data.data });
+          dispatch({ type: 'SEARCH_COMPLETE', payload: data.data });
         } catch (error) {
           if (cancelRequest) return;
-          dispatch({ type: "SEARCH_ERROR", payload: error.message });
+          dispatch({ type: 'SEARCH_ERROR', payload: error.message });
         }
       }
     };
 
     fetchData();
 
-    return function cleanup() {
+    // eslint-disable-next-line consistent-return
+    return () => {
       cancelRequest = true;
     };
   }, [url]);
 
   return state;
 };
+
+export default useApi;

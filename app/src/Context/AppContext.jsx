@@ -1,5 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
-import PropTypes from "prop-types";
+import React, { createContext, useContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
 
 export const StateContext = createContext();
 
@@ -10,11 +10,11 @@ export const Provider = ({ reducer, initialState, children }) => (
 );
 
 Provider.propTypes = {
-
   reducer: PropTypes.func,
   initialState: PropTypes.shape({
-    searchResults: PropTypes.array,
+    searchResults: PropTypes.arrayOf(PropTypes.element),
   }),
+  children: PropTypes.element,
 };
 
 Provider.defaultProps = {

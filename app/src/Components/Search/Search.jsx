@@ -1,35 +1,34 @@
-import { useState, useEffect } from "react";
-import { useApi } from "../../Hooks/useApi";
-import { AppStateValue } from "../../Context/AppContext";
-import { CONSTANTS } from "../../Constants/index";
-import { EVENT_TYPES } from "../../Reducers/AppReducer";
+import React, { useState, useEffect } from 'react';
+import useApi from '../../Hooks/useApi';
+import { AppStateValue } from '../../Context/AppContext';
+import CONSTANTS from '../../Constants/index';
+import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
 function Search() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
-  const url = query && `${CONSTANTS.search}?q=${query}`;
-  const { status, data, error } = useApi(url);
+  const url = query && `${CONSTANTS.endpoints.search}?q=${query}`;
+  const { status, data } = useApi(url);
 
   const [, dispatch] = AppStateValue();
-  
   const handleSearch = (e) => {
-    const query = e.target.value;
+    const searchQuery = e.target.value;
 
-    if (!query) {
-      console.log('yo');
+    if (!searchQuery) {
       dispatch({
         type: EVENT_TYPES.SET_CLEAR_RESULTS,
         searchResults: [],
         setAlbums: false,
-        trackList: []
+        trackList: [],
+        autocomplete: [],
       });
       return;
     }
-    setQuery(query);
+    setQuery(searchQuery);
   };
 
   useEffect(() => {
-    if (status === "searching") {
+    if (status === 'searching') {
       dispatch({
         type: EVENT_TYPES.SEARCHING,
         searchstatus: status,
@@ -44,10 +43,9 @@ function Search() {
     }
   }, [data, dispatch, status]);
 
-  console.log("data", data);
   return (
     <form>
-      <label>
+      <label htmlFor="name">
         <input type="text" onChange={handleSearch} name="name" />
       </label>
       <input type="submit" value="Submit" />

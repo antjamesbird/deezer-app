@@ -1,8 +1,9 @@
-import TrackList from "../TrackList/TrackList";
-import { AppStateValue } from "../../Context/AppContext";
+import React from 'react';
+import TrackList from '../TrackList/TrackList';
+import { AppStateValue } from '../../Context/AppContext';
 
 function Detail() {
-  const [{ trackList }, dispatch] = AppStateValue();
+  const [{ trackList }] = AppStateValue();
 
   return (
     <div>
@@ -15,7 +16,7 @@ function Detail() {
           <span>Released</span>
         </li>
         {trackList.map((track) => (
-          <TrackList key={track.id} release="" {...track} />
+          <TrackList key={track.id} track={track} />
         ))}
       </ul>
     </div>

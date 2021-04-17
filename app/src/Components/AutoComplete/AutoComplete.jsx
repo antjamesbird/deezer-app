@@ -1,27 +1,36 @@
-import { AppStateValue } from "../../Context/AppContext";
-import { EVENT_TYPES } from "../../Reducers/AppReducer";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { AppStateValue } from '../../Context/AppContext';
+import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
-function AutoComplete({ ...props }) {
-    console.log('fdsf', props);
+function AutoComplete({ result }) {
   const [, dispatch] = AppStateValue();
-  const handleClick = (e) => {
+  const handleClick = () => {
     dispatch({
-        type: EVENT_TYPES.SET_ALBUMS,
-        setAlbums: true,
-        autocomplete: [],
-        artist: props.name
-    })
-    console.log("e", props.id);
+      type: EVENT_TYPES.SET_ALBUMS,
+      setAlbums: true,
+      autocomplete: [],
+      artist: result.name,
+    });
   };
   return (
-    <li>
-      <button onClick={handleClick}>
-        <span>
-          {props.name} - {props.title}
-        </span>
-      </button>
+    <li aria-hidden="true" onClick={handleClick}>
+      <span>
+        {result.name} - {result.title}
+      </span>
     </li>
   );
 }
+
+AutoComplete.propTypes = {
+  result: PropTypes.shape({
+    title: PropTypes.string,
+    name: PropTypes.string,
+  }),
+};
+
+AutoComplete.defaultProps = {
+  result: {},
+};
 
 export default AutoComplete;
