@@ -2,14 +2,14 @@ export const EVENT_TYPES = Object.freeze({
   SET_SEARCH_RESULTS: Symbol('SET_SEARCH_RESULTS'),
   SET_CLEAR_RESULTS: Symbol('SET_CLEAR_RESULTS'),
   SET_ALBUMS: Symbol('SET_ALBUMS'),
-  SEARCHING: Symbol('SEARCHING'),
+  SEARCH_STATUS: Symbol('SEARCH_STATUS'),
   SET_ALBUM_TRACKS: Symbol('SET_ALBUM_TRACKS'),
 });
 
 const reducer = (state, action) => {
   switch (action.type) {
     case EVENT_TYPES.SET_SEARCH_RESULTS: {
-      const autocomplete = action.searchResults.map((item) => ({
+      const autocompleteList = action.searchResults.map((item) => ({
         id: item.id,
         name: item.artist.name,
         title: item.title,
@@ -18,7 +18,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchResults: action.searchResults,
-        autocomplete,
+        autocompleteList,
+        autoCompleteActive: action.autoCompleteActive,
       };
     }
     case EVENT_TYPES.SET_CLEAR_RESULTS: {
@@ -27,7 +28,9 @@ const reducer = (state, action) => {
         searchResults: action.searchResults,
         setAlbums: action.setAlbums,
         trackList: action.trackList,
-        autocomplete: action.autocomplete,
+        autocompleteList: action.autocompleteList,
+        searchstatus: action.searchstatus,
+        autoCompleteActive: action.autoCompleteActive,
       };
     }
     case EVENT_TYPES.SET_ALBUMS: {
@@ -37,11 +40,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         setAlbums: action.setAlbums,
-        autocomplete: action.autocomplete,
+        autocompleteList: action.autocompleteList,
         artistAlbums,
+        autoCompleteActive: action.autoCompleteActive,
+        searchstatus: action.searchstatus,
       };
     }
-    case EVENT_TYPES.SEARCHING: {
+    case EVENT_TYPES.SEARCH_STATUS: {
       return {
         ...state,
         searchstatus: action.searchstatus,
@@ -51,6 +56,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         trackList: action.trackList,
+        curentAlbum: action.curentAlbum,
       };
     }
     default: {

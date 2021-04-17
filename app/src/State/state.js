@@ -1,10 +1,12 @@
 const initialState = {
   searchResults: [],
-  autocomplete: [],
+  autocompleteList: [],
   searchstatus: '',
   setAlbums: false,
+  autoCompleteActive: false,
   artistAlbums: [],
   trackList: [],
+  curentAlbum: {},
 };
 
 export default initialState;

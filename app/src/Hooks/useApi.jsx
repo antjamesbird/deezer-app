@@ -12,11 +12,19 @@ const useApi = (url) => {
   const [state, dispatch] = useReducer((reducerstate, action) => {
     switch (action.type) {
       case 'SEARCHING':
-        return { ...initialState, status: 'searching' };
+        return { ...initialState, status: 'Searching...' };
       case 'SEARCH_COMPLETE':
-        return { ...initialState, status: 'complete', data: action.payload };
+        return {
+          ...initialState,
+          status: 'Search Results...',
+          data: action.payload,
+        };
       case 'SEARCH_ERROR':
-        return { ...initialState, status: 'error', error: action.payload };
+        return {
+          ...initialState,
+          status: 'There was an error...',
+          error: action.payload,
+        };
       default:
         return reducerstate;
     }

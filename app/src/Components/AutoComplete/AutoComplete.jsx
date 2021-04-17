@@ -9,8 +9,10 @@ function AutoComplete({ result }) {
     dispatch({
       type: EVENT_TYPES.SET_ALBUMS,
       setAlbums: true,
-      autocomplete: [],
+      autocompleteList: [],
+      autoCompleteActive: false,
       artist: result.name,
+      searchstatus: '',
     });
   };
   return (

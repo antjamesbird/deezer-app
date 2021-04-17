@@ -5,9 +5,9 @@ import { AppStateValue } from '../../Context/AppContext';
 function Results() {
   const [{ artistAlbums }] = AppStateValue();
   return (
-    <div>
+    <div className="album-list">
       {artistAlbums.map((album) => (
-        <Album key={album.id} album={album} />
+        <Album key={album.id} album={album} size="md" />
       ))}
     </div>
   );

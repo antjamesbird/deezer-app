@@ -1,6 +1,14 @@
+:root {
+  --background: #171219;
+  --input: #225560;
+  --text: #f2f4f3;
+  --detail: #14213d;
+}
+
 body,
 html {
   padding: 0;
   margin: 0;
-  /* background-color: #000000; */
+  background-color: var(--background);
+  color: var(--text);
 }

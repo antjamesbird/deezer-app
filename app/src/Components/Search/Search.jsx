@@ -20,25 +20,28 @@ function Search() {
         searchResults: [],
         setAlbums: false,
         trackList: [],
-        autocomplete: [],
+        autocompleteList: [],
+        autoCompleteActive: false,
+        searchstatus: '',
+        curentAlbum: {},
       });
       return;
     }
-    setQuery(searchQuery);
+
+    if (searchQuery.length >= 3) setQuery(searchQuery);
   };
 
   useEffect(() => {
-    if (status === 'searching') {
-      dispatch({
-        type: EVENT_TYPES.SEARCHING,
-        searchstatus: status,
-      });
-    }
-
+    dispatch({
+      type: EVENT_TYPES.SEARCH_STATUS,
+      searchstatus: status,
+    });
     if (data) {
+      console.log('yo yo yo', data);
       dispatch({
         type: EVENT_TYPES.SET_SEARCH_RESULTS,
         searchResults: data,
+        autoCompleteActive: true,
       });
     }
   }, [data, dispatch, status]);
@@ -46,9 +49,14 @@ function Search() {
   return (
     <form>
       <label htmlFor="name">
-        <input type="text" onChange={handleSearch} name="name" />
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={handleSearch}
+          name="name"
+        />
       </label>
-      <input type="submit" value="Submit" />
+      {/* <input type="submit" value="Submit" /> */}
     </form>
   );
 }
