@@ -50,6 +50,10 @@ input[type='text'] {
   margin-bottom: 1px;
 }
 
+::-webkit-input-placeholder {
+  color: var(--text);
+}
+
 .no-results,
 .search-status {
   background-color: var(--input);
@@ -87,7 +91,11 @@ input[type='text'] {
   width: 100%;
   list-style: none;
   padding: 15px 0 15px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #22355e;
+}
+
+.track-list span.heading {
+  font-size: 20px;
 }
 
 .track-list li span:first-child {
@@ -99,12 +107,15 @@ input[type='text'] {
 }
 
 .track-list li span:nth-child(3) {
-  width: 30%;
+  width: 25%;
 }
 
-.track-list li span:nth-child(4),
-.track-list li span:nth-child(5) {
+.track-list li span:nth-child(4) {
   width: 10%;
+}
+
+.track-list li span:nth-child(5) {
+  width: 15%;
 }
 
 .track-list li span {

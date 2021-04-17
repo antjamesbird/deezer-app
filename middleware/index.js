@@ -24,10 +24,10 @@ app.get("/search", (req, res) => {
   );
 });
 
-app.get("/tracks", (req, res) => {
+app.get("/album", (req, res) => {
   const query = req.query.q;
   request(
-    { url: `https://api.deezer.com/album/${query}/tracks` },
+    { url: `https://api.deezer.com/album/${query}` },
 
     (error, response, body) => {
       if (error || response.statusCode !== 200) {
@@ -38,4 +38,5 @@ app.get("/tracks", (req, res) => {
     }
   );
 });
+
 app.listen(port, () => console.log(`listening on ${port}`));

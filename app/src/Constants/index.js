@@ -1,7 +1,7 @@
 const CONSTANTS = {
   endpoints: {
     search: 'http://localhost:3001/search',
-    tracks: 'http://localhost:3001/tracks',
+    album: 'http://localhost:3001/album',
   },
 };
 

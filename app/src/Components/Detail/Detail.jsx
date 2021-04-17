@@ -4,24 +4,39 @@ import { AppStateValue } from '../../Context/AppContext';
 import Album from '../Album/Album';
 
 function Detail() {
-  const [{ trackList, curentAlbum }] = AppStateValue();
+  const [{ trackList, curentAlbumFull }] = AppStateValue();
 
   return (
     <div className="detail">
       <div className="current-album">
-        <Album size="lg" album={curentAlbum} />
+        <Album disableSearch size="lg" album={curentAlbumFull} />
       </div>
       <div className="track-list">
         <ul>
           <li>
-            <span>#</span>
-            <span>Title</span>
-            <span>Artist</span>
-            <span>Time</span>
-            <span>Released</span>
+            <span className="heading">
+              <strong>#</strong>
+            </span>
+            <span className="heading">
+              <strong>Title</strong>
+            </span>
+            <span className="heading">
+              <strong>Artist</strong>
+            </span>
+            <span className="heading">
+              <strong>Time</strong>
+            </span>
+            <span className="heading">
+              <strong>Released</strong>
+            </span>
           </li>
           {trackList.map((track, index) => (
-            <TrackList key={track.id} index={index} track={track} />
+            <TrackList
+              key={track.id}
+              release={curentAlbumFull.release_date}
+              index={index}
+              track={track}
+            />
           ))}
         </ul>
       </div>

@@ -3,7 +3,7 @@ export const EVENT_TYPES = Object.freeze({
   SET_CLEAR_RESULTS: Symbol('SET_CLEAR_RESULTS'),
   SET_ALBUMS: Symbol('SET_ALBUMS'),
   SEARCH_STATUS: Symbol('SEARCH_STATUS'),
-  SET_ALBUM_TRACKS: Symbol('SET_ALBUM_TRACKS'),
+  SET_CURRENT_ALBUM_FULL: Symbol('SET_CURRENT_ALBUM_FULL'),
 });
 
 const reducer = (state, action) => {
@@ -34,9 +34,22 @@ const reducer = (state, action) => {
       };
     }
     case EVENT_TYPES.SET_ALBUMS: {
-      const artistAlbums = state.searchResults.filter(
+      const getArtistAlbumns = state.searchResults.filter(
         (item) => item.artist.name === action.artist
       );
+      // Filter out duplicates
+      const filter = {};
+      const artistAlbums = [];
+      getArtistAlbumns.forEach((item) => {
+        filter[item.album.id] = item;
+      });
+      const keys = Object.keys(filter);
+      keys.forEach((key) => {
+        // eslint-disable-next-line no-prototype-builtins
+        if (filter.hasOwnProperty(key)) {
+          artistAlbums.push(filter[key]);
+        }
+      });
       return {
         ...state,
         setAlbums: action.setAlbums,
@@ -44,6 +57,7 @@ const reducer = (state, action) => {
         artistAlbums,
         autoCompleteActive: action.autoCompleteActive,
         searchstatus: action.searchstatus,
+        trackList: action.trackList,
       };
     }
     case EVENT_TYPES.SEARCH_STATUS: {
@@ -52,11 +66,11 @@ const reducer = (state, action) => {
         searchstatus: action.searchstatus,
       };
     }
-    case EVENT_TYPES.SET_ALBUM_TRACKS: {
+    case EVENT_TYPES.SET_CURRENT_ALBUM_FULL: {
       return {
         ...state,
+        curentAlbumFull: action.curentAlbumFull,
         trackList: action.trackList,
-        curentAlbum: action.curentAlbum,
       };
     }
     default: {

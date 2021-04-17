@@ -5,38 +5,54 @@ import CONSTANTS from '../../Constants/index';
 import { AppStateValue } from '../../Context/AppContext';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
-function Album({ album, size }) {
+function Album({ album, size, disableSearch }) {
   const [, dispatch] = AppStateValue();
   const [query, setQuery] = useState('');
-  const url = query && `${CONSTANTS.endpoints.tracks}?q=${query}`;
+  const url = query && `${CONSTANTS.endpoints.album}?q=${query}`;
   const { status, data } = useApi(url);
 
   const handleClick = () => {
-    setQuery(album.album.id);
+    if (disableSearch) return;
+    const { id } = album.album;
+    setQuery(id);
+    if (data) {
+      dispatch({
+        type: EVENT_TYPES.SET_CURRENT_ALBUM_FULL,
+        trackList: data.tracks.data,
+        curentAlbumFull: data,
+      });
+    }
   };
 
   useEffect(() => {
     if (data) {
       dispatch({
-        type: EVENT_TYPES.SET_ALBUM_TRACKS,
-        trackList: data,
-        curentAlbum: album,
+        type: EVENT_TYPES.SET_CURRENT_ALBUM_FULL,
+        trackList: data.tracks.data,
+        curentAlbumFull: data,
       });
     }
   }, [data, dispatch, status]);
   return (
     <div aria-hidden="true" onClick={handleClick}>
       <img
-        src={size === 'md' ? album.album.cover_medium : album.album.cover_big}
-        alt={album.album.title}
+        src={
+          size === 'md'
+            ? album.cover_medium || album.album.cover_medium
+            : album.cover_big || album.album.cover_big
+        }
+        alt={album.album ? album.album.title : album.title}
       />
-      <h2>{album.album.title}</h2>
+      <h2>{album.album ? album.album.title : album.title}</h2>
     </div>
   );
 }
 
 Album.propTypes = {
   album: PropTypes.shape({
+    cover_medium: PropTypes.string,
+    cover_big: PropTypes.string,
+    title: PropTypes.string,
     album: PropTypes.shape({
       id: PropTypes.number,
       title: PropTypes.string,
@@ -48,11 +64,13 @@ Album.propTypes = {
     }),
   }),
   size: PropTypes.string,
+  disableSearch: PropTypes.bool,
 };
 
 Album.defaultProps = {
   album: {},
   size: 'md',
+  disableSearch: false,
 };
 
 export default Album;

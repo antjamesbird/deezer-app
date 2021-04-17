@@ -24,6 +24,7 @@ function Search() {
         autoCompleteActive: false,
         searchstatus: '',
         curentAlbum: {},
+        curentAlbumFull: {},
       });
       return;
     }
@@ -37,7 +38,6 @@ function Search() {
       searchstatus: status,
     });
     if (data) {
-      console.log('yo yo yo', data);
       dispatch({
         type: EVENT_TYPES.SET_SEARCH_RESULTS,
         searchResults: data,

@@ -13,6 +13,7 @@ function AutoComplete({ result }) {
       autoCompleteActive: false,
       artist: result.name,
       searchstatus: '',
+      trackList: [],
     });
   };
   return (

@@ -45,7 +45,7 @@ const useApi = (url) => {
           const data = await response.json();
           cache.current[url] = data;
           if (cancelRequest) return;
-          dispatch({ type: 'SEARCH_COMPLETE', payload: data.data });
+          dispatch({ type: 'SEARCH_COMPLETE', payload: data.data || data });
         } catch (error) {
           if (cancelRequest) return;
           dispatch({ type: 'SEARCH_ERROR', payload: error.message });

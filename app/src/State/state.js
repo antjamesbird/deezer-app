@@ -6,7 +6,7 @@ const initialState = {
   autoCompleteActive: false,
   artistAlbums: [],
   trackList: [],
-  curentAlbum: {},
+  curentAlbumFull: {},
 };
 
 export default initialState;

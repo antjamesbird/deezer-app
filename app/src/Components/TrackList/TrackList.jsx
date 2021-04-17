@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function List({ track, index }) {
+function List({ track, index, release }) {
+  const formatTime = (seconds) => {
+    const date = new Date(0);
+    date.setSeconds(seconds);
+    return date.toISOString().substr(11, 8);
+  };
   return (
     <li>
       <span>{index + 1}</span>
       <span>{track.title}</span>
       <span>{track.artist.name}</span>
-      <span>{track.duration}</span>
-      <span>{track.release || '0000'}</span>
+      <span>{formatTime(track.duration)}</span>
+      <span>{release}</span>
     </li>
   );
 }
@@ -23,11 +28,13 @@ List.propTypes = {
     }),
   }),
   index: PropTypes.number,
+  release: PropTypes.string,
 };
 
 List.defaultProps = {
   track: {},
   index: null,
+  release: '',
 };
 
 export default List;
