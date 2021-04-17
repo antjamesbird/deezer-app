@@ -52,9 +52,6 @@ input[type='text'] {
   margin-bottom: 1px;
 }
 
-input[type='text']:focus {
-}
-
 ::-webkit-input-placeholder {
   color: var(--text);
 }

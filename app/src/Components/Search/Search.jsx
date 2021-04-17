@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useApi from '../../Hooks/useApi';
+import './search.svg';
 import { AppState } from '../../Context/AppContext';
 import CONSTANTS from '../../Constants/index';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
@@ -56,7 +57,6 @@ function Search() {
           name="name"
         />
       </label>
-      {/* <input type="submit" value="Submit" /> */}
     </form>
   );
 }
