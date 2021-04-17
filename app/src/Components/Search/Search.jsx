@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useApi from '../../Hooks/useApi';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 import CONSTANTS from '../../Constants/index';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
@@ -10,7 +10,7 @@ function Search() {
   const url = query && `${CONSTANTS.endpoints.search}?q=${query}`;
   const { status, data } = useApi(url);
 
-  const [, dispatch] = AppStateValue();
+  const [, dispatch] = AppState();
   const handleSearch = (e) => {
     const searchQuery = e.target.value;
 

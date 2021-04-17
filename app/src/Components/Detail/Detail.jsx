@@ -1,10 +1,10 @@
 import React from 'react';
 import TrackList from '../TrackList/TrackList';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 import Album from '../Album/Album';
 
 function Detail() {
-  const [{ trackList, curentAlbumFull }] = AppStateValue();
+  const [{ trackList, curentAlbumFull }] = AppState();
 
   return (
     <div className="detail">

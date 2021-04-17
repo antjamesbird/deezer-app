@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 import './Container.css';
 import Search from '../Search/Search';
 import AlbumList from '../AlbumList/AlbumList';
@@ -16,7 +16,7 @@ function AppContainer() {
       searchResults,
       autoCompleteActive,
     },
-  ] = AppStateValue();
+  ] = AppState();
 
   return (
     <div className="container">

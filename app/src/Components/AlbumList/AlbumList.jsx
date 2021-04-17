@@ -1,9 +1,9 @@
 import React from 'react';
 import Album from '../Album/Album';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 
-function Results() {
-  const [{ artistAlbums }] = AppStateValue();
+function AlbumList() {
+  const [{ artistAlbums }] = AppState();
   return (
     <div className="album-list">
       {artistAlbums.map((album) => (
@@ -13,4 +13,4 @@ function Results() {
   );
 }
 
-export default Results;
+export default AlbumList;

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
 function AutoComplete({ result }) {
-  const [, dispatch] = AppStateValue();
+  const [, dispatch] = AppState();
   const handleClick = () => {
     dispatch({
       type: EVENT_TYPES.SET_ALBUMS,

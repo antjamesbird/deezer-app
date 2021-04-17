@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useApi from '../../Hooks/useApi';
 import CONSTANTS from '../../Constants/index';
-import { AppStateValue } from '../../Context/AppContext';
+import { AppState } from '../../Context/AppContext';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
 
 function Album({ album, size, disableSearch }) {
-  const [, dispatch] = AppStateValue();
+  const [, dispatch] = AppState();
   const [query, setQuery] = useState('');
   const url = query && `${CONSTANTS.endpoints.album}?q=${query}`;
   const { status, data } = useApi(url);

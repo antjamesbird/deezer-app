@@ -23,4 +23,4 @@ Provider.defaultProps = {
   children: null,
 };
 
-export const AppStateValue = () => useContext(StateContext);
+export const AppState = () => useContext(StateContext);
