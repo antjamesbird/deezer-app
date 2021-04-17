@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "cd middleware && npm run start",
+    "client": "cd app && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "setup": "npm install & (cd middleware && npm install) & (cd app && npm install)"
   },
   "repository": {
     "type": "git",
@@ -16,6 +19,8 @@
     "url": "https://github.com/antjamesbird/deezer-app/issues"
   },
   "homepage": "https://github.com/antjamesbird/deezer-app#readme",
-  "dependencies": {},
+  "dependencies": {
+    "concurrently": "^6.0.2"
+  },
   "devDependencies": {}
 }
