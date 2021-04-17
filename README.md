@@ -12,12 +12,12 @@
 
 ### `npm run setup`
 
-<p>Run the following command: `npm run dev` from the root directory and the app should start up on `http://localhost:3000/`</p>
+<p>Run `npm run dev` from the root directory and the app should start up on `http://localhost:3000/`</p>
 
 ### `npm run dev`
 
 <h3>::Tests::</h3>
 
-<p>Run the following command: `npm run dev` from the app directory to run tests</p>
+<p>Run `npm run dev` from the app directory to run tests</p>
 
 ## `npm run test`
