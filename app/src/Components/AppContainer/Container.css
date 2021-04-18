@@ -38,6 +38,13 @@ form {
   outline: 0;
 }
 
+h1 {
+  padding-top: 20px;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+
 input[type='text'] {
   background: transparent;
   outline: 0;

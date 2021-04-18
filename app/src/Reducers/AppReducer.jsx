@@ -20,6 +20,7 @@ const reducer = (state, action) => {
         searchResults: action.searchResults,
         autocompleteList,
         autoCompleteActive: action.autoCompleteActive,
+        query: action.query,
       };
     }
     case EVENT_TYPES.SET_CLEAR_RESULTS: {
@@ -31,6 +32,7 @@ const reducer = (state, action) => {
         autocompleteList: action.autocompleteList,
         searchstatus: action.searchstatus,
         autoCompleteActive: action.autoCompleteActive,
+        query: action.query,
       };
     }
     case EVENT_TYPES.SET_ALBUMS: {

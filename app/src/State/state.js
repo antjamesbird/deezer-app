@@ -7,6 +7,7 @@ const initialState = {
   artistAlbums: [],
   trackList: [],
   curentAlbumFull: {},
+  query: '',
 };
 
 export default initialState;

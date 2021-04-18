@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { AppState } from '../../Context/AppContext';
 import './Container.css';
 import Search from '../Search/Search';
@@ -15,6 +15,7 @@ function AppContainer() {
       searchstatus,
       searchResults,
       autoCompleteActive,
+      query,
     },
   ] = AppState();
 
@@ -47,7 +48,12 @@ function AppContainer() {
           </div>
         )}
       </div>
-      {setAlbums && <AlbumList />}
+      {setAlbums && (
+        <>
+          <h1>Rearch results for: {query}</h1>
+          <AlbumList />
+        </>
+      )}
       {trackList.length > 0 && <Detail />}
     </div>
   );

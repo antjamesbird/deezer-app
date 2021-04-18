@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import useApi from '../../Hooks/useApi';
-import './search.svg';
 import { AppState } from '../../Context/AppContext';
 import CONSTANTS from '../../Constants/index';
 import { EVENT_TYPES } from '../../Reducers/AppReducer';
@@ -26,6 +25,7 @@ function Search() {
         searchstatus: '',
         curentAlbum: {},
         curentAlbumFull: {},
+        query,
       });
       return;
     }
@@ -43,6 +43,7 @@ function Search() {
         type: EVENT_TYPES.SET_SEARCH_RESULTS,
         searchResults: data,
         autoCompleteActive: true,
+        query,
       });
     }
   }, [data, dispatch, status]);
